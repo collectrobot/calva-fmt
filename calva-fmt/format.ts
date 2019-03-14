@@ -38,6 +38,7 @@ export function formatPosition(editor: vscode.TextEditor, onType: boolean = fals
 }
 
 export function formatPositionCommand(editor: vscode.TextEditor) {
+    // console.log("formatPositionCommand!!", editor)
     formatPosition(editor);
 }
 

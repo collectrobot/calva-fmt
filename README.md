@@ -87,3 +87,9 @@ See [How to Contribute](https://github.com/BetterThanTomorrow/calva-fmt/wiki/How
 PRs welcome, file an issue or chat us up in the [`#calva-dev` channel](https://clojurians.slack.com/messages/calva-dev/) of the Clojurians Slack. Tweeting [@pappapez](https://twitter.com/pappapez) works too.
 
 [![#calva-dev in Clojurians Slack](https://img.shields.io/badge/clojurians-calva--dev-blue.svg?logo=slack)](https://clojurians.slack.com/messages/calva-dev/)
+
+---
+
+## 修改的功能
+修改Clojure语言为scheme语言,使其可以格式化
+添加vim normal状态下 == 和 可编辑模式下tab命令功能相同

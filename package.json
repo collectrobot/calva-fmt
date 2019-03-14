@@ -1,11 +1,11 @@
 {
-    "name": "calva-fmt",
-    "displayName": "Calva Clojure Formatter",
-    "description": "Clojure and ClojureScript formatter for Visual Studio Code",
+    "name": "calva-fmt-for-scheme",
+    "displayName": "Calva Clojure Formatter for scheme",
+    "description": "scheme formatter for Visual Studio Code  calva clojure formatter",
     "version": "0.0.38",
-    "publisher": "cospaia",
+    "publisher": "collectrobot",
     "engines": {
-        "vscode": "^1.20.0"
+        "vscode": "^1.30.0"
     },
     "categories": [
         "Programming Languages",
@@ -21,7 +21,7 @@
     "icon": "assets/calva-fmt.png",
     "repository": {
         "type": "git",
-        "url": "https://github.com/BetterThanTomorrow/calva-fmt.git"
+        "url": "https://github.com/collectrobot/calva-fmt.git"
     },
     "galleryBanner": {
         "color": "#344D81",
@@ -40,20 +40,45 @@
         }
     ],
     "activationEvents": [
-        "onLanguage:clojure"
+        "onLanguage:clojure",
+        "onLanguage:scheme"
     ],
     "main": "./out/calva-fmt/extension",
     "contributes": {
+        "languages": [
+            {
+                "id": "scheme",
+                "aliases": [
+                    "Scheme",
+                    "scheme"
+                ],
+                "extensions": [
+                    ".scm",
+                    ".ss",
+                    ".sch",
+                    ".rkt",
+                    ".sls",
+                    "clj",
+                    ".sc"
+                ],
+                "configuration": "./scheme-configuration.json"
+            }
+        ],
         "grammars": [
             {
                 "language": "clojure",
                 "scopeName": "source.clojure",
                 "path": "./clojure.tmLanguage.json"
+            },
+            {
+                "language": "scheme",
+                "scopeName": "source.scheme",
+                "path": "./syntaxes/scheme.tmLanguage"
             }
         ],
         "commands": [
             {
-                "command": "calva-fmt.formatCurrentForm",
+                "command": "calva-fmt.formaCurPositionForm",
                 "title": "Format Current Form",
                 "category": "Calva Format"
             },
@@ -80,29 +105,29 @@
         ],
         "keybindings": [
             {
-                "command": "calva-fmt.formatCurrentForm",
+                "command": "calva-fmt.formaCurPositionForm",
                 "key": "tab",
-                "when": "editorLangId == clojure && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
+                "when": "editorLangId == scheme && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
             },
             {
                 "command": "calva-fmt.alignCurrentForm",
                 "key": "ctrl+alt+l",
-                "when": "editorLangId == clojure && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
+                "when": "editorLangId == scheme && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
             },
             {
                 "command": "calva-fmt.inferParens",
                 "key": "ctrl+alt+p",
-                "when": "editorLangId == clojure && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
+                "when": "editorLangId == scheme && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
             },
             {
                 "command": "calva-fmt.tabIndent",
                 "key": "ctrl+i",
-                "when": "editorLangId == clojure && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
+                "when": "editorLangId == scheme && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
             },
             {
                 "command": "calva-fmt.tabDedent",
                 "key": "shift+ctrl+i",
-                "when": "editorLangId == clojure && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
+                "when": "editorLangId == scheme && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
             }
         ],
         "configuration": [
@@ -191,8 +216,6 @@
         "immutable-cursor": "^2.0.1",
         "npm": "^6.7.0"
     },
-    "extensionDependencies": [
-        "cospaia.clojure4vscode"
-    ],
+    "extensionDependencies": [],
     "license": "MIT"
 }
