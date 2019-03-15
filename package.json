@@ -58,7 +58,6 @@
                     ".sch",
                     ".rkt",
                     ".sls",
-                    "clj",
                     ".sc"
                 ],
                 "configuration": "./scheme-configuration.json"
@@ -214,6 +213,7 @@
         "@cospaia/calva-lib": "0.0.21",
         "immutable": "^4.0.0-rc.12",
         "immutable-cursor": "^2.0.1",
+        "json5": "^2.1.0",
         "npm": "^6.7.0"
     },
     "extensionDependencies": [],
