@@ -1,23 +1,23 @@
 # calva-fmt
 
-This is the [Calva Formatter](https://marketplace.visualstudio.com/items?itemName=cospaia.calva-fmt) - a Clojure and ClojureScript formatter for Visual Studio Code.
+This is the [Calva Formatter](https://marketplace.visualstudio.com/items?itemName=cospaia.calva-fmt) - a Scheme and SchemeScript formatter for Visual Studio Code.
 
 ## Raison d´être
 
 1. To the extent possible, formatting should happen as you type. Code should very seldom be in a an unformatted state.
-1. **Fewer dependencies, less headaches**. You should be able to edit a Clojure file, with full formatting help, without depending on a REPL running or anything else needed to be installed.
-1. **Fewer conflicts, more predictability**. As VSCode gets to be a more serious editor for Clojurians there is a an editing war going on between the various plugins that help with editing Clojure code. Calva Formatter is aiming at being the major Clojure formatter, lifting this responsibility from the shoulders of extensions like Calva, Paredit and other Clojure related extensions.
+1. **Fewer dependencies, less headaches**. You should be able to edit a Scheme file, with full formatting help, without depending on a REPL running or anything else needed to be installed.
+1. **Fewer conflicts, more predictability**. As VSCode gets to be a more serious editor for Clojurians there is a an editing war going on between the various plugins that help with editing Scheme code. Calva Formatter is aiming at being the major Scheme formatter, lifting this responsibility from the shoulders of extensions like Calva, Paredit and other Scheme related extensions.
 
 ## Features
 
-* Formats according to the community [Clojure Style Guide](https://github.com/bbatsov/clojure-style-guide) (while giving you some options to tweak this style).
+* Formats according to the community [Scheme Style Guide](https://github.com/bbatsov/scheme-style-guide) (while giving you some options to tweak this style).
 * Formats the code when new lines are entered, mostly keeping things formated as you type.
 * Adds a command for formatting the enclosing form, default key binding is `tab`.
 * Adds a command for aligning map items, and bindings in the current form, default key binding `ctrl+alt+l`. (This is a bit experimental and will not always produce the prettiest results. Also it is recursive.) You can also opt-in to have this behaviour be on for all formatting, via settings.
 * Adds a command for infering parens/brackets from indents (using ParinferLib), default key binding `ctrl+alt+p`.
 * Adds a command for indenting and dedenting the current line (using ParinferLib), default key binding `ctrl+i` and `shift+ctrl+i`, respectively.
 * Provides the formater for the VSCode *Format Selection* and *Format Document* commands as well as for *Format on Paste*.
-* Is intended to be used alongside and by other Clojure extensions.
+* Is intended to be used alongside and by other Scheme extensions.
 
 ### Demo GIF time
 
@@ -42,15 +42,15 @@ Install it and edit away. It will keep the code fomatted mostly as you type, in 
 
 ## You might not need to install it
 
-*Calva Formatter* comes bundled with [Calva](https://marketplace.visualstudio.com/items?itemName=cospaia.clojure4vscode)
+*Calva Formatter* comes bundled with [Calva](https://marketplace.visualstudio.com/items?itemName=cospaia.scheme4vscode)
 
-## Written in ClojureScipt
+## Written in SchemeScipt
 
 Built with [Shadow CLJS](http://shadow-cljs.org/).
 
 ## By the Calva team a.k.a. Better Than Tomorrow
 
-We are committed to make the Clojure experience in VS Code pruductive and pleasurable.
+We are committed to make the Scheme experience in VS Code pruductive and pleasurable.
 
 * [Peter Strömberg](https://github.com/PEZ)
 * [Matt Seddon](https://github.com/mseddon)
@@ -72,7 +72,7 @@ Calva Formatter and the current Parinfer extension are not compatible. Some Pari
 
 ## How to contribute
 
-Calva Formater is written in TypeScript and ClojureScript. It is setup so that the formatting ”decisions” are made by a library written in ClojureScript and then TypeScript is used to integrate these decisions into VS Code. Division of labour.
+Calva Formater is written in TypeScript and SchemeScript. It is setup so that the formatting ”decisions” are made by a library written in SchemeScript and then TypeScript is used to integrate these decisions into VS Code. Division of labour.
 
 See [How to Contribute](https://github.com/BetterThanTomorrow/calva-fmt/wiki/How-to-Contribute) on the project wiki for instructions.
 
@@ -91,5 +91,5 @@ PRs welcome, file an issue or chat us up in the [`#calva-dev` channel](https://c
 ---
 
 ## 修改的功能
-修改Clojure语言为scheme语言,使其可以格式化
+修改Scheme语言为scheme语言,使其可以格式化
 添加vim normal状态下 == 和 可编辑模式下tab命令功能相同

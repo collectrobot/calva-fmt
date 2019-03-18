@@ -14,4 +14,4 @@ test_js/**
 .shadow-cljs/**
 js/**
 
-atom-language-clojure/**
+atom-language-scheme/**

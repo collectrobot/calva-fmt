@@ -1,5 +1,5 @@
 /**
- * A Scanner for Clojure.
+ * A Scanner for Scheme.
  * 
  * Based on a pared down version of my lexer without a lot of other needless cruft relating to source information etc.
  * Unlike flex, this lexer doesn't support states, so we toggle between toplevel and string states by swapping lexers.
@@ -13,7 +13,7 @@ export interface Token extends LexerToken {
     state: ScannerState;
 }
 
-// The toplevel lexical grammar for Clojure.
+// The toplevel lexical grammar for Scheme.
 let toplevel = new LexicalGrammar();
 
 // whitespace
@@ -33,7 +33,7 @@ toplevel.terminal("[0-9]+[rR][0-9a-zA-Z]+", (l, m) => ({ type: "lit" }))
 toplevel.terminal("[-+]?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?", (l, m) => ({ type: "lit" }))
 
 toplevel.terminal(":[^()[\\]\\{\\}#,~@'`^\"\\s]+", (l, m) => ({ type: "lit" }))
-// this is a REALLY lose symbol definition, but similar to how clojure really collects it. numbers/true/nil are all 
+// this is a REALLY lose symbol definition, but similar to how scheme really collects it. numbers/true/nil are all 
 toplevel.terminal("[^()[\\]\\{\\}#,~@'`^\"\\s:][^()[\\]\\{\\}#,~@'`^\"\\s]*", (l, m) => ({ type: "id" }))
 // complete string on a single line
 toplevel.terminal('"([^"\\\\]|\\\\.)*"', (l, m) => ({ type: "str"}))

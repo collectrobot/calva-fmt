@@ -1,7 +1,7 @@
 {
     "name": "calva-fmt-for-scheme",
-    "displayName": "Calva Clojure Formatter for scheme",
-    "description": "scheme formatter for Visual Studio Code  calva clojure formatter",
+    "displayName": "Calva Scheme Formatter for chez",
+    "description": "scheme formatter for Visual Studio Code",
     "version": "0.0.38",
     "publisher": "collectrobot",
     "engines": {
@@ -12,8 +12,7 @@
         "Formatters"
     ],
     "keywords": [
-        "Clojure",
-        "ClojureScript",
+        "Scheme",
         "EDN",
         "Formatting",
         "Pretty"
@@ -40,7 +39,7 @@
         }
     ],
     "activationEvents": [
-        "onLanguage:clojure",
+        "onLanguage:scheme",
         "onLanguage:scheme"
     ],
     "main": "./out/calva-fmt/extension",
@@ -65,9 +64,11 @@
         ],
         "grammars": [
             {
-                "language": "clojure",
-                "scopeName": "source.clojure",
-                "path": "./clojure.tmLanguage.json"
+                "language": "scheme",
+                "scopeName": "source.scheme",
+                "xxx": "./scheme.tmLanguage.json",
+                "xxxx": "./syntaxes/scheme.tmLanguage",
+                "path": "./scheme.tmLanguage.json"
             },
             {
                 "language": "scheme",
@@ -105,7 +106,7 @@
         "keybindings": [
             {
                 "command": "calva-fmt.formaCurPositionForm",
-                "key": "tab",
+                "key": "tab tab",
                 "when": "editorLangId == scheme && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
             },
             {
@@ -178,7 +179,7 @@
             }
         ],
         "configurationDefaults": {
-            "[clojure]": {
+            "[scheme]": {
                 "editor.wordSeparators": "\t ()\"':,;~@#$%^&{}[]`",
                 "editor.autoClosingBrackets": "always",
                 "editor.autoClosingQuotes": "always",
@@ -196,7 +197,7 @@
         "vscode:prepublish": "npm run release",
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "node ./node_modules/vscode/bin/test",
-        "update-grammar": "node ./update-grammar.js ./atom-language-clojure/grammars/clojure.cson ./clojure.tmLanguage.json"
+        "update-grammar": "node ./update-grammar.js ./atom-language-scheme/grammars/scheme.cson ./scheme.tmLanguage.json"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.5",

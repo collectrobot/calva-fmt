@@ -3,7 +3,7 @@ import * as Immutable from 'immutable';
 import * as ImmutableCursor from 'immutable-cursor';
 
 const mode = {
-    language: 'clojure',
+    language: 'scheme',
     //scheme: 'file'
 };
 

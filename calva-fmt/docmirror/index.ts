@@ -1,9 +1,9 @@
 import * as vscode from "vscode";
-import { Scanner, ScannerState, Token } from "./clojure-lexer";
+import { Scanner, ScannerState, Token } from "./scheme-lexer";
 
 const scanner = new Scanner();
 
-class ClojureSourceLine {
+class SchemeSourceLine {
     tokens: Token[];
     endState: ScannerState;
     constructor(public text: string, public startState: ScannerState, lineNo: number) {
@@ -296,7 +296,7 @@ function equal(x: any, y: any): boolean {
 }
 
 class DocumentMirror {
-    lines: ClojureSourceLine[] = [];
+    lines: SchemeSourceLine[] = [];
     scanner = new Scanner();
 
     dirtyLines: number[] = [];
@@ -305,7 +305,7 @@ class DocumentMirror {
         scanner.state = this.getStateForLine(0);
         for(let i=0; i<doc.lineCount; i++) {
             let line = doc.lineAt(i);
-            this.lines.push(new ClojureSourceLine(line.text, scanner.state, i));
+            this.lines.push(new SchemeSourceLine(line.text, scanner.state, i));
         }
     }
 
@@ -315,7 +315,7 @@ class DocumentMirror {
         let now = Date.now();
         for(let i=0; i<this.doc.lineCount; i++) {
             let line = this.doc.lineAt(i);
-            this.lines.push(new ClojureSourceLine(line.text, scanner.state, i));
+            this.lines.push(new SchemeSourceLine(line.text, scanner.state, i));
         }
         console.log("Rescanned document in "+(Date.now()-now)+"ms");
     }
@@ -364,7 +364,7 @@ class DocumentMirror {
         // we've nuked these lines, so update the dirty line array to correct the indices and delete affected ranges.
         this.removeDirty(e.range.start.line, e.range.end.line, replaceLines.length-1);
 
-        let items: ClojureSourceLine[] = [];
+        let items: SchemeSourceLine[] = [];
         
         // initialize the lexer state - the first line is definitely not in a string, otherwise copy the
         // end state of the previous line before the edit
@@ -372,13 +372,13 @@ class DocumentMirror {
 
         if(replaceLines.length == 1) {
             // trivial single line edit
-            items.push(new ClojureSourceLine(left + replaceLines[0] + right, state, e.range.start.line));
+            items.push(new SchemeSourceLine(left + replaceLines[0] + right, state, e.range.start.line));
         } else {
             // multi line edit.
-            items.push(new ClojureSourceLine(left + replaceLines[0], state, e.range.start.line));
+            items.push(new SchemeSourceLine(left + replaceLines[0], state, e.range.start.line));
             for(let i=1; i<replaceLines.length-1; i++)
-                items.push(new ClojureSourceLine(replaceLines[i], scanner.state, e.range.start.line+i));
-            items.push(new ClojureSourceLine(replaceLines[replaceLines.length-1] + right, scanner.state, e.range.start.line+replaceLines.length))
+                items.push(new SchemeSourceLine(replaceLines[i], scanner.state, e.range.start.line+i));
+            items.push(new SchemeSourceLine(replaceLines[replaceLines.length-1] + right, scanner.state, e.range.start.line+replaceLines.length))
         }
 
         // now splice in our edited lines
@@ -398,10 +398,10 @@ class DocumentMirror {
                 continue; // already processed.
             seen.add(nextIdx);
             let prevState = this.getStateForLine(nextIdx);
-            let newLine: ClojureSourceLine;
+            let newLine: SchemeSourceLine;
             do {
                 seen.add(nextIdx);
-                newLine = new ClojureSourceLine(this.lines[nextIdx].text, prevState, nextIdx);
+                newLine = new SchemeSourceLine(this.lines[nextIdx].text, prevState, nextIdx);
                 prevState = newLine.endState;
                 this.lines[nextIdx] = newLine;    
             } while(this.lines[++nextIdx] && !(equal(this.lines[nextIdx].startState, prevState)))
@@ -432,13 +432,13 @@ export function activate() {
     registered = true;
 
     vscode.workspace.onDidCloseTextDocument(e => {
-        if(e.languageId == "clojure") {
+        if(e.languageId == "scheme") {
             documents.delete(e);
         }
     })
 
     vscode.workspace.onDidChangeTextDocument(e => {
-        if(e.document.languageId == "clojure") {
+        if(e.document.languageId == "scheme") {
             if(!documents.get(e.document))
                 documents.set(e.document, new DocumentMirror(e.document));
             else
@@ -448,7 +448,7 @@ export function activate() {
 }
 
 export function getDocument(doc: vscode.TextDocument) {
-    if(doc.languageId == "clojure") {
+    if(doc.languageId == "scheme") {
         if(!documents.get(doc))
             documents.set(doc, new DocumentMirror(doc));
         return documents.get(doc);
@@ -597,7 +597,8 @@ interface IndentState {
 let OPEN_LIST = new Set(["#(", "#?(", "(", "#?@("])
 
 export function collectIndentState(document: vscode.TextDocument, position: vscode.Position, maxDepth: number = 3, maxLines: number = 20): IndentState[] {
-    let cursor = getDocument(document).getTokenCursor(position);
+    let doc = getDocument(document)
+    let cursor =    doc.getTokenCursor(position);
     let argPos = 0;
     let startLine = cursor.line;
     let exprsOnLine = 0;
