@@ -66,14 +66,13 @@
             {
                 "language": "scheme",
                 "scopeName": "source.scheme",
-                "xxx": "./scheme.tmLanguage.json",
-                "xxxx": "./syntaxes/scheme.tmLanguage",
-                "path": "./scheme.tmLanguage.json"
-            },
+                "path": "./syntaxes/scheme.tmLanguage"
+            }
+        ],
+        "snippets": [
             {
                 "language": "scheme",
-                "scopeName": "source.scheme",
-                "path": "./syntaxes/scheme.tmLanguage"
+                "path": "./snippets/scheme.json"
             }
         ],
         "commands": [
