@@ -106,7 +106,7 @@
             {
                 "command": "calva-fmt.formaCurPositionForm",
                 "key": "tab tab",
-                "when": "editorLangId == scheme && editorTextFocus && !editorReadOnly && !suggestWidgetVisible && !hasOtherSuggestions"
+                "when": "editorLangId == scheme && editorTextFocus && !suggestWidgetVisible && !hasOtherSuggestions"
             },
             {
                 "command": "calva-fmt.alignCurrentForm",
