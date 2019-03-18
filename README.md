@@ -96,5 +96,5 @@ PRs welcome, file an issue or chat us up in the [`#calva-dev` channel](https://c
 编辑模式下 tab tab 对齐
 
 ## 参考借用
-[chclock/vscode-chez](https://github.com/chclock/vscode-chez.git)
-[false-schemers/vscode-scheme-r7rsvscode-scheme-r7rs](https://github.com/false-schemers/vscode-scheme-r7rs.git)
+* [chclock/vscode-chez](https://github.com/chclock/vscode-chez.git)
+* [false-schemers/vscode-scheme-r7](https://github.com/false-schemers/vscode-scheme-r7rs.git)
